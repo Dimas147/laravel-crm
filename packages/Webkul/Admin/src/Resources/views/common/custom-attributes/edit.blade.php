@@ -5,6 +5,11 @@
 @foreach ($customAttributes as $attribute)
 
     @php
+
+    echo "<pre>";
+    //print_r($attribute);
+    echo "</pre>";
+
         if (isset($customValidations[$attribute->code])) {
             $validations = implode('|', $customValidations[$attribute->code]);
         } else {

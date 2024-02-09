@@ -113,6 +113,7 @@ return [
         'en' => 'English',
         'tr' => 'Türkçe',
         'ar' => 'Arabic',
+        'uk' => 'Ukrainian',
     ],
 
     /*
@@ -150,7 +151,7 @@ return [
     |
      */
 
-    'currency' => env('APP_CURRENCY', 'USD'),
+    'currency' => env('APP_CURRENCY', 'UAH'),
 
     /*
     |--------------------------------------------------------------------------

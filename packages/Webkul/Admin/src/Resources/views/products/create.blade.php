@@ -6,6 +6,7 @@
 
 @section('content-wrapper')
     <div class="content full-page adjacent-center">
+
         {!! view_render_event('admin.products.create.header.before') !!}
 
         <div class="page-header">
@@ -38,6 +39,7 @@
                         </div>
         
                         <div class="panel-body">
+
                             {!! view_render_event('admin.products.create.form_controls.before') !!}
 
                             @csrf()

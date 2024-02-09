@@ -125,7 +125,7 @@ class Install extends Command
             $timezone = $this->anticipate('Please enter the default timezone', $TimeZones, date_default_timezone_get());
             $this->envUpdate('APP_TIMEZONE=', $timezone);
 
-            $currency = $this->choice('Please enter the default currency', ['USD', 'EUR'], 'USD');
+            $currency = $this->choice('Please enter the default currency', ['USD', 'EUR', 'UAH'], 'UAH');
             $this->envUpdate('APP_CURRENCY=', $currency);
 
             $this->addDatabaseDetails();

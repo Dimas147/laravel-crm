@@ -56,7 +56,7 @@
             {!! view_render_event('admin.layout.nav-left.after') !!}
 
 
-            <div class="content-container" :style="{ paddingLeft: isMenuOpen ? '160px' : ''}">
+            <div class="content-container" :style="{ paddingLeft: isMenuOpen ? '200px' : ''}">
 
                 {!! view_render_event('admin.layout.content.before') !!}
 
