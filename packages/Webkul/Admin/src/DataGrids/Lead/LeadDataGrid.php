@@ -240,9 +240,9 @@ class LeadDataGrid extends DataGrid
             'sortable'   => false,
             'filterable' => false,
             'closure'    => function ($row) {
-                if ($row->stage == 'Won') {
+                if ($row->stage == 'Виконано') {
                     $badge = 'success';
-                } else if ($row->stage == 'Lost') {
+                } else if ($row->stage == 'Відмінено') {
                     $badge = 'danger';
                 } else {
                     $badge = 'primary';

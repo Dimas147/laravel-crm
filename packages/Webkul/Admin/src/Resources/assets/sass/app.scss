@@ -214,6 +214,7 @@ body {
 
             > a {
                 padding: 16px 12px;
+                min-height: 54px;
                 display: block;
                 color: $secondary-font-color;
                 width: 100%;
@@ -292,7 +293,7 @@ body {
     }
 
     &.open {
-        width: 160px;
+        width: 250px;
         overflow-x: auto;
 
         ul.menubar {

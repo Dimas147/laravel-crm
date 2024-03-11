@@ -48,7 +48,7 @@ return [
         'false'                 => 'False / Inactive',
         'between'               => 'Is between',
         'apply'                 => 'Apply',
-        'items-per-page'        => 'Items Per Page',
+        'items-per-page'        => 'Записів на сторінці',
         'value-here'            => 'Value here',
         'numeric-value-here'    => 'Numeric Value here',
         'submit'                => 'Submit',

@@ -121,8 +121,8 @@ ul.drag-inner-list {
 }
 
 .drag-item {
-    margin: 0px;
-    box-shadow: none;
+    border-radius: 5px;
+    margin: 0 0 5px;
     line-height: 30px;
     background: $white;
     transition: $ease-out;

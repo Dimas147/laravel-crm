@@ -51,25 +51,26 @@
             </div>
 
             <div class="form-group email">
-                <label for="person[emails]" class="required">{{ __('admin::app.leads.email') }}</label>
+                <label for="person[emails]">{{ __('admin::app.leads.email') }} 5555</label>
 
                 @include('admin::common.custom-attributes.edit.email', ['formScope' => $formScope ?? ''])
                     
                 <email-component
                     :attribute="{'code': 'person[emails]', 'name': 'Email'}"
                     :data="person.emails"
-                    validations="required|email"
+                    validations="email"
                 ></email-component>
             </div>
 
             <div class="form-group contact-numbers">
-                <label for="person[contact_numbers]">{{ __('admin::app.leads.contact-numbers') }}</label>
+                <label for="person[contact_numbers]" class="required">{{ __('admin::app.leads.contact-numbers') }}</label>
 
                 @include('admin::common.custom-attributes.edit.phone', ['formScope' => $formScope ?? ''])
                     
                 <phone-component
                     :attribute="{'code': 'person[contact_numbers]', 'name': 'Contact Numbers'}"
                     :data="person.contact_numbers"
+                    validations="required"
                 ></phone-component>
             </div>
 

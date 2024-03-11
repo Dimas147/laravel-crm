@@ -122,6 +122,8 @@
             'title'                    => 'Замовлення',
             'lead'                     => 'Замовлення',
             'create-title'             => 'Створити замовлення',
+            'create-pipeline'          => 'Create pipeline',
+            'my-pipelines'             => 'My pipelines',
             'edit-title'               => 'Редагувати замовлення',
             'save-btn-title'           => 'Зберегти як замовлення',
             'save'                     => 'Save',

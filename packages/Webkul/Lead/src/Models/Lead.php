@@ -88,7 +88,9 @@ class Lead extends Model implements LeadContract
      */
     public function stage()
     {
-        return $this->belongsTo(StageProxy::modelClass(), 'lead_pipeline_stage_id');
+        $leads = $this->belongsTo(StageProxy::modelClass(), 'lead_pipeline_stage_id');
+
+        return $leads;
     }
 
     /**

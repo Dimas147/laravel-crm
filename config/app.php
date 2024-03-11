@@ -239,6 +239,9 @@ return [
         Webkul\User\Providers\UserServiceProvider::class,
         Webkul\WebForm\Providers\WebFormServiceProvider::class,
         Webkul\Workflow\Providers\WorkflowServiceProvider::class,
+
+        // My packages
+        ACME\HelloWorld\Providers\HelloWorldServiceProvider::class,
     ],
 
     /*

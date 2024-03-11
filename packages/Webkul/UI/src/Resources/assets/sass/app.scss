@@ -667,6 +667,7 @@ h5 {
             .filter-btn {
                 cursor: pointer;
                 display: inline-block;
+                vertical-align: top;
 
                 .grid-dropdown-header {
                     width: 105px;
@@ -692,6 +693,7 @@ h5 {
         .dropdown-filters {
             margin-right: 6px;
             display: inline-block;
+            vertical-align: top;
 
             &.per-page {
                 .form-group {
@@ -761,8 +763,13 @@ h5 {
     margin-top: 20px;
 
     .page-item {
-        height: 100%;
-        margin-right: 5px;
+        float: left;
+        cursor: pointer;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        min-width: 40px;
+        margin-right: 0;
         background: $white;
         text-decoration: none;
         display: inline-block;
@@ -781,16 +788,17 @@ h5 {
 
         &.disabled {
             cursor: not-allowed !important;
+            opacity: 0.2;
         }
 
         &.active {
             color: $white;
-            background: $brand-color;
-            border-color: $brand-color;
+            background: $primary-color;
+            border-color: $primary-color;
         }
 
         .icon {
-            top: 4px;
+            top: -2px;
             position: relative;
             vertical-align: middle;
         }

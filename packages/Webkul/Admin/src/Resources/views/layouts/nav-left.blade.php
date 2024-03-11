@@ -1,6 +1,6 @@
 @php($menu = Menu::prepare())
 
-<div class="navbar-left" v-bind:class="{'open': isMenuOpen}">
+<div class="navbar-left" v-bind:class="{'open': isMenuOpen}" style="width: 250px;">
     <ul class="menubar">
         @foreach ($menu->items as $menuItem)
             <li
@@ -16,10 +16,10 @@
                 @endif
             >
 
-                <a href="{{ $menuItem['url'] }}">
-                    <i class="icon sprite {{ $menuItem['icon-class'] }}"></i>
+                <a href="{{ $menuItem['url'] }}" style="position: relative;">
+                    <i style="position: absolute; top: 50%; left: 10px; margin-top: -10px;" class="icon sprite {{ $menuItem['icon-class'] }}"></i>
                     
-                    <span class="menu-label">{{ $menuItem['name'] }}</span>
+                    <span class="menu-label" style="padding-left: 20px;">{{ $menuItem['name'] }}</span>
                 </a>
 
                 @if ($menuItem['key'] != 'configuration')

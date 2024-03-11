@@ -135,7 +135,7 @@ abstract class DataGrid
      *
      * @var int
      */
-    protected $itemsPerPage = 10;
+    protected $itemsPerPage = 50;
 
     /**
      * Enable search field.

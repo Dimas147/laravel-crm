@@ -1,30 +1,42 @@
 <template>
     <div :class="`pagination ${tabView ? 'tab-view' : 'full-view'}`" v-if="records.data.length > 0">
         <template v-if="tabView">
+
             <a class="page-item previous disabled" v-if="! records.prev_page_url">
                 <i class="icon arrow-left-line-icon"></i>
             </a>
 
             <a
-                v-else
-                id="previous"
-                class="page-item previous"
-                @click="changePage({
-                    url: records.prev_page_url,
-                    page_number: records.current_page - 1
-                })"
+                    v-else
+                    id="previous"
+                    class="page-item previous"
+                    @click="changePage({
+                url: records.prev_page_url,
+                page_number: records.current_page - 1
+            })"
             >
                 <i class="icon arrow-left-line-icon"></i>
             </a>
 
+            <a  v-bind:class="{ 'active': records.current_page === page }"
+                v-for="page in total_pages"
+                    class="page-item"
+                    @click="changePage({
+                url: records.next_page_url,
+                page_number: page
+            })"
+            >
+                {{ page }}
+            </a>
+
             <a
-                id="next"
-                class="page-item next"
-                v-if="records.next_page_url"
-                @click="changePage({
-                    url: records.next_page_url,
-                    page_number: records.current_page + 1
-                })"
+                    id="next"
+                    class="page-item next"
+                    v-if="records.next_page_url"
+                    @click="changePage({
+                url: records.next_page_url,
+                page_number: records.current_page + 1
+            })"
             >
                 <i class="icon arrow-right-line-icon"></i>
             </a>
@@ -77,6 +89,10 @@
             ...mapState({
                 tableData : state => state.tableData,
             }),
+
+            total_pages: function(){
+                return Math.ceil(this.records.total / this.records.per_page)
+            },
 
             records: function () {
                 return this.tableData.records;

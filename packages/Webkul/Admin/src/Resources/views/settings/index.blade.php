@@ -22,6 +22,7 @@
             @php($menu = Menu::prepare())
 
             @foreach ($menu->items['settings']['children'] as $setting)
+
                 <div class="panel">
                     <div class="panel-header">
                         <h3>{{ $setting['name'] }}</h3>

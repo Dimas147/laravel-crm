@@ -17,6 +17,7 @@ return [
         \Webkul\User\Providers\ModuleServiceProvider::class,
         \Webkul\WebForm\Providers\ModuleServiceProvider::class,
         \Webkul\Workflow\Providers\ModuleServiceProvider::class,
+        \ACME\HelloWorld\Providers\ModuleServiceProvider::class
     ],
     'register_route_models' => true
 ];

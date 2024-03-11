@@ -34,12 +34,23 @@
 
             @if (bouncer()->hasPermission('leads.create'))
                 <div class="table-action">
+                    <a href="{{ route('admin.settings.pipelines.index') }}" class="btn btn-md btn-primary">{{ __('admin::app.leads.my-pipelines') }}</a>
                     <a href="{{ route('admin.leads.create') }}" class="btn btn-md btn-primary">{{ __('admin::app.leads.create-title') }}</a>
                 </div>
             @endif
         </div>
 
         <div class="table-body viewport-height">
+
+
+            @php
+
+               $my_arr = $pipeline->stages->toArray();
+               //echo "<pre>";
+               //print_r($pipeline);
+               //echo "<pre>";
+            @endphp
+
             <kanban-filters></kanban-filters>
 
             <kanban-component></kanban-component>
@@ -93,15 +104,26 @@
                 @endif
             </div>
 
+            @{{ generateDate(lead_ttns) }}
+
             <div
                 v-for="lead in leads"
                 :slot="lead.id"
                 :key="`block-${lead.id}`"
                 class="lead-block"
+                style="max-width: 300px;"
                 :class="{ 'rotten': lead.rotten_days > 0 ? true : false }"
             >
 
                 <div class="lead-title">@{{ lead.title }}</div>
+                <div class="lead-date" style="font-size: 14px;">
+                    <span v-if="isToday(lead.created_at)" class="badge badge-round badge-success"></span>
+                    <span v-if="isToday(lead.created_at)">
+                        @{{ isToday(lead.created_at) }}
+                    </span>
+
+                    @{{ generateDate(lead.created_at) }}
+                </div>
 
                 <div class="icons">
                     <a :href="'{{ route('admin.leads.view') }}/' + lead.id" class="icon eye-icon"></a>
@@ -114,7 +136,14 @@
                             @{{ lead.person_name }}
                         </a>
                 </div>
-
+                <div v-if="lead.ttn">
+                    <div class="lead-tracking-number">
+                        <i style="position: relative; top: 5px; margin-right: 5px;" class="icon" :class="{['logistics-service_' + lead.delivery_service]: true}"></i>
+                        <span style="font-size: 14px;">
+                        @{{ lead.ttn }}
+                        </span>
+                    </div>
+                </div>
                 <div class="lead-cost">
                     <i class="icon dollar-circle-icon"></i>@{{ lead.lead_value }}
                 </div>
@@ -147,6 +176,7 @@
             },
 
             methods: {
+
                 toggleSidebarFilter: function () {
                     $('.sidebar-filter').toggleClass('show');
                 },
@@ -164,6 +194,8 @@
                     stage_pagination: {},
 
                     leads: [],
+
+                    lead_ttns: [],
 
                     debounce: null,
 
@@ -218,6 +250,46 @@
             },
 
             methods: {
+
+                isToday: function(date){
+
+                    let options = {
+                        weekday: "short",
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "numeric"
+                    };
+
+                    let today = new Date();
+                    today = today.toLocaleString('en', options);
+                    date = new Date(date).toLocaleString('en', options);
+
+                    // 👇️ Today's date
+                    //console.log(today);
+                    //console.log(date);
+
+                    if (today === date) {
+                        return "Сьогодні";
+                    }
+
+                    return '';
+                },
+
+                generateDate: function (a){
+                    return new Date(a).toLocaleString();
+                },
+
+                compare: function (a, b) {
+                    if (a.created_at < b.created_at) {
+                        return 1;
+                    }
+                    if (a.created_at > b.created_at) {
+                        return -1;
+                    }
+                    // a должно быть равным b
+                    return 0;
+                },
+
                 getLeads: function (searchedKeyword, filterValues) {
                     this.$root.pageLoaded = false;
 
@@ -236,6 +308,18 @@
                                     totalCounts[stage.name] = response.data[stage.id]['total'];
 
                                     let resLeads = response.data[stage.id]['leads']
+
+                                    // Sort elements by created date (DESC)
+
+                                    resLeads.sort(self.compare)
+
+                                    resLeads.forEach(function(leadItem) {
+                                        console.log(leadItem.id)
+                                        console.log(leadItem.ttn)
+
+                                        self.leads.push({'lead_id': leadItem.id, 'lead_ttn': leadItem.ttn });
+                                    })
+
                                     self.leads = self.leads.concat(resLeads.filter(resLeads => self.leads.findIndex(lead => lead.id == resLeads.id) == -1))
 
                                     self.stage_pagination[stage.id] = response.data[stage.id]['pagination'];
